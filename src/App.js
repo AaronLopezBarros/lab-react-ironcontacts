@@ -3,23 +3,18 @@ import { useState } from 'react';
 import './App.css';
 import contacts from "./contacts.json";
 
-
-
 function App() {
 
 
-  const [contact, setContact] = useState([
-    contacts[0],
-    contacts[1],
-    contacts[2],
-    contacts[3],
-    contacts[4],
-    
-  ])
-  
+  const [contact, setContact] = useState(contacts.slice(0, 5))
+  const randomContacts = contacts[Math.floor((Math.random() * 47) + 5)]
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
+        <div>
+           <button onClick={() => setContact([...contact, randomContacts])}>Add Random Contact</button>
+        </div>
       <table>
         <tr>
           <th>Pictures</th>

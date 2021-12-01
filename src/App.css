@@ -48,4 +48,7 @@ img{
   margin: 20px;
   max-width: 50px;
 }
-
+.App button{
+  width: fit-content;
+  margin: 20px
+}
