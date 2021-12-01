@@ -7,13 +7,29 @@ function App() {
 
 
   const [contact, setContact] = useState(contacts.slice(0, 5))
-  const randomContacts = contacts[Math.floor((Math.random() * 47) + 5)]
+  const randomContacts        = contacts[Math.floor((Math.random() * 47) + 5)]
+  const orderByPopularity     = contact.map((item) => item).sort((a, b) => b.popularity - a.popularity)
+  
+  const orderByName = () => {
+    const orderContact = contact
+      .map((item) => item)
+      .sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    return orderContact;
+  };
 
   return (
     <div className="App">
       <h1>IronContacts</h1>
         <div>
            <button onClick={() => setContact([...contact, randomContacts])}>Add Random Contact</button>
+           <button onClick={() => setContact(orderByPopularity)}>Sort by popularity</button>
+           <button onClick={() => setContact(orderByName())}>Sort by name</button>
         </div>
       <table>
         <tr>
