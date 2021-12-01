@@ -23,6 +23,15 @@ function App() {
     return orderContact;
   };
 
+  const deleteContact = (contactName) => {
+
+    const fileteredContacs = contact.filter((contact) => {
+
+      return contactName !== contact.name
+    })
+     return fileteredContacs
+  }
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
@@ -38,15 +47,17 @@ function App() {
           <th>Popularity</th>
           <th>Won Oscar</th>
           <th>Won Emmy</th>
+          <th>Actions</th>
         </tr>
         {contact.map((item)=>{
 
           return   <tr> 
-                      <td><img src={item.pictureUrl} alt="actor" /> </td>
+                      <td><img src={item.pictureUrl} alt="contact" /> </td>
                       <td><p>{item.name}</p></td>
                       <td><p>{Math.floor(item.popularity)}</p></td>
                       {item.wonOscar ? <td> 🏆 </td> : <td>  </td>}
                       {item.wonEmmy  ? <td> 🏆 </td> : <td>  </td>}
+                      <td><button onClick={() => setContact(deleteContact(item.name))}>Delete</button></td>
                    </tr>
         })}
       </table>
